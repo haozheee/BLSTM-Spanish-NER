@@ -30,7 +30,7 @@ if os.path.exists('./model.pth'):
 
 model = model.to(device)
 
-optimizer = torch.optim.SGD(model.parameters(), lr=0.003)
+optimizer = torch.optim.SGD(model.parameters(), lr=0.0005)
 optimizer.zero_grad()
 loss_fn = nn.CrossEntropyLoss()
 
