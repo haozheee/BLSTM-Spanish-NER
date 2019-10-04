@@ -30,7 +30,7 @@ if os.path.exists('./model.pth'):
 
 model = model.to(device)
 
-optimizer = torch.optim.SGD(model.parameters(), lr=0.0005)
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 optimizer.zero_grad()
 loss_fn = nn.CrossEntropyLoss()
 
@@ -49,5 +49,6 @@ for i in range(max_steps):
         loss = loss_fn(batch_predict, batch_labels)
         total_loss = total_loss + loss
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 5)
         optimizer.step()
     print("Iteration " + str(i) + ", Loss: " + str(total_loss))
